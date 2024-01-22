@@ -1,7 +1,17 @@
-export default function Todos() {
+import TodoList from "./TicketList";
+
+export default function Tickets() {
   return (
     <main>
-      <h2>Todos</h2>
+      <nav>
+        <div>
+          <h2>Todo List</h2>
+          <p>
+            <small>Currently open tickets.</small>
+          </p>
+        </div>
+      </nav>
+      <TodoList />
     </main>
   );
 }
