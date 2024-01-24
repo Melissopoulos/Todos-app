@@ -14,7 +14,7 @@ const todoSchema = new mongoose.Schema({
     default: false,
   },
   userId: {
-    type: String, // Assuming you store user ID with each todo
+    type: String,
     required: true,
   },
   createdAt: {

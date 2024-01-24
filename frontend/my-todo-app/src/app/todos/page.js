@@ -1,4 +1,4 @@
-import TodoList from "./TicketList";
+import TodoList from "./Todolist";
 
 export default function Tickets() {
   return (

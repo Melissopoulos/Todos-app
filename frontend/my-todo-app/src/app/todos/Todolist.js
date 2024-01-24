@@ -12,20 +12,22 @@ async function getTodos() {
 
 export default async function TodoList() {
   const todos = await getTodos();
+  console.log(todos);
 
   return (
     <>
-      {todos.map((todo) => (
-        <div key={todo.id} className="card my-5">
-          <Link href={`/todos/${todo.id}`}>
-            <h3>{todo.title}</h3>
-            <p>{todo.body.slice(0, 200)}...</p>
-            <div className={`pill ${todo.priority}`}>
-              {todo.priority} priority
-            </div>
-          </Link>
-        </div>
-      ))}
+      {todos &&
+        todos.map((todo) => (
+          <div key={todo.id} className="card my-5">
+            <Link href={`/todos/${todo.id}`}>
+              <h3>{todo.title}</h3>
+              <p>{todo.body.slice(0, 200)}...</p>
+              <div className={`pill ${todo.priority}`}>
+                {todo.priority} priority
+              </div>
+            </Link>
+          </div>
+        ))}
       {todos.length === 0 && (
         <p className="text-center">There are no open todos, yay!</p>
       )}
