@@ -1,4 +1,5 @@
 import TodoList from "./Todolist";
+import Link from "next/link";
 
 export default function Tickets() {
   return (
@@ -12,6 +13,11 @@ export default function Tickets() {
         </div>
       </nav>
       <TodoList />
+      <div className="flex justify-center items-center h-screen">
+        <Link href="/todos/create" passHref>
+          <button className="btn-primary">Create New Todo</button>
+        </Link>
+      </div>
     </main>
   );
 }
