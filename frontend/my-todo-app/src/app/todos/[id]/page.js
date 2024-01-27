@@ -13,9 +13,9 @@ export async function generateStaticParams() {
 }
 
 async function getTodo(id) {
-  const res = await fetch(`http://localhost:3001/tickets/${id}`, {
+  const res = await fetch(`http://localhost:3001/todos/${id}`, {
     next: {
-      revalidate: 60,
+      revalidate: 0,
     },
   });
 
@@ -28,7 +28,7 @@ async function getTodo(id) {
 
 export default async function TodoDetails({ params }) {
   // const id = params.id
-  const ticket = await getTodo(params.id);
+  const todo = await getTodo(params.id);
 
   return (
     <main>
@@ -36,9 +36,9 @@ export default async function TodoDetails({ params }) {
         <h2>Todo Details</h2>
       </nav>
       <div className="card">
-        <h3>{todo.title}</h3>
-        <small>Created by {todo.user_email}</small>
-        <p>{todo.body}</p>
+        <h3>{todo.description}</h3>
+        <small>Created by </small>
+        <p>{todo.completed}</p>
         <div className={`pill ${todo.priority}`}>{todo.priority} priority</div>
       </div>
     </main>

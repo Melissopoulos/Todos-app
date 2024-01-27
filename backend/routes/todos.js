@@ -15,8 +15,13 @@ router.get("/", async (req, res) => {
 // Create a new todo
 router.post("/", async (req, res) => {
   try {
-    const { title, description, completed, userId } = req.body;
-    const todo = new Todo({ title, description, completed, userId });
+    const { description, completed, priority } = req.body;
+    const todo = new Todo({
+      description,
+      completed,
+      priority,
+      id,
+    });
     const savedTodo = await todo.save();
     res.status(201).json(savedTodo);
   } catch (error) {
@@ -26,7 +31,7 @@ router.post("/", async (req, res) => {
 
 // Get a specific todo
 router.get("/:id", getTodo, (req, res) => {
-  res.send(res.todo);
+  res.json(res.todo);
 });
 
 // Delete a todo
@@ -41,7 +46,7 @@ router.delete("/:id", getTodo, async (req, res) => {
 async function getTodo(req, res, next) {
   let todo;
   try {
-    const todo = await Todo.findById(req.params.id);
+    todo = await Todo.findById(req.params.id);
     if (!todo) {
       return res.status(404).json({ error: "Todo not found" });
     }

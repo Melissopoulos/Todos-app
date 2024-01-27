@@ -18,10 +18,10 @@ export default async function TodoList() {
     <>
       {todos &&
         todos.map((todo) => (
-          <div key={todo.id} className="card my-5">
-            <Link href={`/todos/${todo.id}`}>
-              <h3>{todo.title}</h3>
-              <p>{todo.body.slice(0, 200)}...</p>
+          <div key={todo._id} className="card my-5">
+            <Link href={`/todos/${todo._id}`}>
+              <h3>{todo.description}</h3>
+              <p>{todo.completed.slice(0, 200)}...</p>
               <div className={`pill ${todo.priority}`}>
                 {todo.priority} priority
               </div>
