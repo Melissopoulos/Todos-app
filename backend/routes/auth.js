@@ -47,7 +47,7 @@ router.get("/user", async (req, res) => {
       return res.status(401).send({ message: "Unauthedicated" });
     }
     const user = await User.findOne({ _id: claims._id });
-    const { password, ...data } = await user.toJSON();
+    const { password, ...data } = user.toJSON();
 
     res.send(data);
   } catch (e) {
