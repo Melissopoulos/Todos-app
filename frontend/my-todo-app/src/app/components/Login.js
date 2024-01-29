@@ -2,8 +2,10 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { useAuth } from "../../AuthContext";
 
 export default function Login() {
+  const { setIsLoggedIn } = useAuth();
   const router = useRouter();
 
   const [email, setEmail] = useState("");
@@ -25,11 +27,13 @@ export default function Login() {
     if (!response.ok) {
       const errorData = await response.json();
       setError(errorData.message);
+      setIsLoggedIn(false);
       return;
     }
 
     if (response.ok) {
       console.log("success");
+      setIsLoggedIn(true);
       router.refresh();
       router.push("/");
     }
